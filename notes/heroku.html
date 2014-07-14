@@ -10,7 +10,7 @@
     <script src="/javascripts/modernizr-467c6284.js" type="text/javascript"></script>
   </head>
 
-  <body class="notes notes_index">
+  <body class="notes notes_heroku">
     <nav class="top-bar" data-topbar>
       <ul class="title-area">
         <li class="name">
@@ -47,7 +47,7 @@
           <li>
             <a href="/resources.html">Resources</a>
           </li>
-          <li class='current'>
+          <li>
             <a href="/notes/">Notes</a>
           </li>
         </ul>
@@ -57,11 +57,27 @@
     <div id="main">
       <div class="row">
   <div class="large-10 large-offset-1 columns">
-    <h1 id="notes">Notes</h1>
+    <h1 id="deploying-to-heroku">Deploying to Heroku</h1>
 
-<ul>
-  <li><a href="/notes/heroku.html">Push to Heroku</a></li>
-</ul>
+<ol>
+  <li>heroku create $project_name</li>
+  <li>Fix app:
+    <ul>
+      <li>Add "pg" to gemfile</li>
+      <li>Make "sqlite3", <code>group: [:development, :test]</code></li>
+      <li>Add "rails_12factor", <code>group: [:production]</code></li>
+    </ul>
+  </li>
+  <li>git push heroku master</li>
+  <li>heroku run rake db:migrate</li>
+  <li>heroku run rake db:seed</li>
+</ol>
+
+<p>To troubleshoot:</p>
+
+<p><code>
+heroku logs
+</code></p>
 
   </div>
 </div>
