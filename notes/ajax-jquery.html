@@ -10,7 +10,7 @@
     <script src="/javascripts/modernizr-467c6284.js" type="text/javascript"></script>
   </head>
 
-  <body class="notes notes_index">
+  <body class="notes notes_ajax-jquery">
     <nav class="top-bar" data-topbar>
       <ul class="title-area">
         <li class="name">
@@ -47,7 +47,7 @@
           <li>
             <a href="/resources.html">Resources</a>
           </li>
-          <li class='current'>
+          <li>
             <a href="/notes/">Notes</a>
           </li>
         </ul>
@@ -57,16 +57,43 @@
     <div id="main">
       <div class="row">
   <div class="large-10 large-offset-1 columns">
-    <h1 id="notes">Notes</h1>
+    <h1 id="jquery-ajax-submittal">jQuery ajax submittal</h1>
 
-<ul>
-  <li><a href="/notes/heroku.html">Push to Heroku</a></li>
-  <li><a href="/notes/devise.html">Devise Guide</a></li>
-  <li><a href="/notes/jquery.html">Learning jQuery / Javascript</a></li>
-  <li><a href="/notes/git.html">Git</a></li>
-  <li><a href="/notes/fog.html">Fog / S3</a></li>
-  <li><a href="/notes/ajax-jquery.html">jQuery AJAX</a></li>
-</ul>
+<p>Sample example:  </p>
+
+<p><code>js
+$.get( "/test" ).then(
+  function() {
+    alert( "$.get succeeded" );
+  }, function() {
+    alert( "$.get failed!" );
+  }
+);
+</code></p>
+
+<p>Rails delete something example. Notice the <code>var that=this</code> crap.</p>
+
+<p>```js
+  $(document).ready(function(){
+    $('input[type="submit"]').click(function(){
+      if(confirm("Are you sure?")){
+        var that = this;</p>
+
+<pre><code>    // Send a delete to the server using jquery ajax
+    $.ajax("/reminders/" + $(this).data("id"), {"type": 'DELETE'}).then(
+      function(){
+        $(that).closest('tr').fadeOut('slow', function(){
+          $(that).remove();
+        });
+      },
+      function(){
+        alert("suck it")
+      }
+    )
+  }
+  return false;
+});   }); ```
+</code></pre>
 
   </div>
 </div>
